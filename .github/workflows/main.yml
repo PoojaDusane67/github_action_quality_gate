@@ -17,7 +17,13 @@ jobs:
               run: pip install -r requirements.txt
 
             - name: run test cases
-              run: pytest --cov=calc --cov-report=term --cov-fail-under=80 --cov-report=html
+              run: pytest --cov=calc --cov-report=term --cov-report=html --cov-fail-under=80 
+
+            - name: download code coverage report
+              uses: actions/upload-artifact@v4
+              with:
+                name: html code coverage report
+                path: htmlcov/
 
     deploy-job:
         runs-on: ubuntu-latest
